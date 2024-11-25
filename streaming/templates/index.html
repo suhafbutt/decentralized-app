@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+  <h1>Library</h1>
+  <div>
+    {% for item in songs %}
+      <div class="song-wrapper float-start">
+        {% if item.thumbnail %}
+          <img src="{{ item.thumbnail }}" alt="Image"  width="150" height="150">
+        {% else %}
+          <img src="{% static 'img/default.jpeg' %}" alt="Default Image"  width="150" height="150">
+        {% endif %}
+        <span class="song-name" >
+          {{item.name}}
+        </span>
+        <span class="song-action">
+          <i class="bi bi-play-fill song-play-link" data-link="{{item.link}}"></i>
+          <a href="{% url 'add_to_playlist' item.id 'favourites' %}" ><i class="bi bi-heart"></i></a>
+        </span>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

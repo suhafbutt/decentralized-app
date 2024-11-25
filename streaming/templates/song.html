@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="col-sm-6">
+    <div class="heading-title">
+      <span class="float-start">
+        <h1>Song</h1>
+      </span>
+      <span class="heading-actions float-end">
+        <i class="bi bi-play-fill song-play-link" data-link="{{song.link}}"></i>
+        <a href="#" class="song-delete-link" data-record_id="{{song.id}}" ><i class="bi bi-trash"></i></a>
+      </span>
+    </div>
+    
+
+    <ul class="list-group list-group-flush playlist-list">
+      <li class="list-group-item">
+        Name:
+        <span class="float-end">
+          {{song.name}}
+        </span>
+      </li>
+      <li class="list-group-item">
+        Artist
+        <span class="float-end">
+          {{artist_name}}
+        </span>
+      </li>
+    </ul>
+  </div>
+{% endblock %}

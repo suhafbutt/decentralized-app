@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="col-sm-12 overflow-hidden">
+    <div class="col-sm-6 overflow-hidden">
+      <h1 class="float-start">My Songs</h1>
+      <a href="/song/upload/" class="btn btn-light me-2 float-end">Upload</a>
+    </div>
+    <div>
+      {% for item in songs %}
+        <div class="song-wrapper float-start {% if not item.is_trusted %} untrusted {% endif %}">
+          {% if item.thumbnail %}
+            <img src="{{ item.thumbnail }}" alt="Image"  width="150" height="150">
+          {% else %}
+            <img src="{% static 'img/default.jpeg' %}" alt="Default Image"  width="150" height="150">
+          {% endif %}
+          <span class="song-name" >
+            {{item.name}}
+          </span>
+          <span class="song-action">
+            <i class="bi bi-play-fill song-play-link" data-link="{{item.link}}"></i>
+            <a href="{% url 'user_song' item.id %}" ><i class="bi bi-info-circle"></i></a>
+          </span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="col-sm-6">
+    <div class="col-sm-12">
+      <h1 class="float-start">Playlists</h1>
+      <a href="/playlists/create/" class="btn btn-light me-2 float-end">Create Playlist</a>
+    </div>
+
+    <ul class="list-group list-group-flush playlist-list w-100 pt-3">
+      {% for item in list_of_playlists %}
+        <li class="list-group-item">
+          {{item}}
+          <span class="float-end">
+            <a href="{% url 'playlist_songs' item %}" ><i class="bi bi-eye"></i></a>
+            {% if not item == 'favourites' %}
+              <a href="{% url 'delete_playlist' item %}" ><i class="bi bi-trash"></i></a>
+            {% endif %}
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

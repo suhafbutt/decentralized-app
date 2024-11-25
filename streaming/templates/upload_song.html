@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="container">
+    <h1>Upload Song</h1>
+    <form action="/song/upload/" method="post" enctype="multipart/form-data" class="upload_song_form">
+      {% csrf_token %}
+      <div class="col-sm-6">
+        {{ form }}
+      </div>
+      <input type="submit" value="Upload" class="btn btn-primary mt-3">
+    </form>
+  </div>
+{% endblock %}
